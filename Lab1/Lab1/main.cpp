@@ -5,6 +5,11 @@
 
 using namespace std;
 
+bool isCorrectType(const string &type)
+{
+	return (type == "INTEGER" || type == "STRING" || type == "BOOLEAN" || type == "DOUBLE");
+}
+
 bool IsCorrectDecl(const string &line)
 {
 	string declString = "", idString = "", typeAssignString = "", typeString = "";
@@ -15,8 +20,7 @@ bool IsCorrectDecl(const string &line)
 	getline(iss, typeAssignString, ' ');
 	getline(iss, typeString, ' ');
 
-	return (declString == "VAR" && idString == "IDENTIFIER" && typeAssignString == "COLON" &&
-		(typeString == "INTEGER" || typeString == "STRING" || typeString == "BOOLEAN" || typeString == "DOUBLE"));
+	return (declString == "VAR" && idString == "IDENTIFIER" && typeAssignString == "COLON" && isCorrectType(typeString));
 }
 
 int main(int argc, char* argv[])
